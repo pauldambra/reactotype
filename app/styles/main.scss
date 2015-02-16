@@ -35,6 +35,31 @@ header {
     }
 }
 
+.clickable {
+    cursor:pointer;
+    &:hover {
+        text-shadow: 2px 0px 40px white;
+        background-color: darkgrey;
+        color:#1f1c1c;
+    }
+}
+
+th {
+    transition: all 0.3s ease-in;
+    &.descending {
+        &:after {
+            content: "\25BC";
+        }
+        @extend .clickable;
+    }
+    &.ascending {
+        &:after{
+            content: "\25B2";
+        }
+        @extend .clickable;
+    }
+}
+
 /* Custom page footer */
 footer {
     padding-top: $margin;
