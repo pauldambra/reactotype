@@ -22,5 +22,3 @@ var payData = [
 ];
 
 module.exports = payData;
-
-

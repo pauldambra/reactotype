@@ -58,8 +58,7 @@ var PayTable = React.createClass({
                 <thead>
                     <tr>
                         <th onClick={this.sortData}
-                            className={this.state.sortDirection}
-                        >
+                            className={this.state.sortDirection}>
                             Year
                         </th>
                         <th>All</th>
