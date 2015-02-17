@@ -2,6 +2,7 @@
 'use strict';
 
 var React = window.React = require('react');
+var postal = window.postal = require('postal');
 
 var PayRow = React.createClass({
     render: function() {
@@ -52,6 +53,20 @@ var PayTable = React.createClass({
             });
         }
     },
+    componentWillMount: function() {
+    postal.subscribe({
+      channel: "filters",
+      topic : "years.bounds.change",
+      callback: function(d, e) {
+        console.log(d);
+        this.filterData(d);
+      }
+    }).context(this);
+  },
+  filterData: function(item) {
+    // var items = this.state.items.concat([item]);
+    // this.setState({ items: items });
+  },
     render: function() {
         return (
             <table className="table table-striped">
