@@ -38,8 +38,8 @@ var FilterBox = React.createClass({
         				   name="earliest"
         				   className="form-control"
         				   defaultValue={this.state.earliest}
-        				   min={this.state.earliest} 
-        				   max={this.state.latest}
+        				   min={this.props.initialEarliest} 
+        				   max={this.props.initialLatest}
         				   onChange={this.handleEarliestChange}/>
         		</div>
         		<div className="form-group">
@@ -48,8 +48,8 @@ var FilterBox = React.createClass({
         				   name="latest" 
         				   className="form-control"
         				   defaultValue={this.state.latest}
-        				   min={this.state.earliest} 
-        				   max={this.state.latest}
+        				   min={this.props.initialEarliest} 
+        				   max={this.props.initialLatest}
         				   onChange={this.handleLatestChange}/>
         		</div>
         	</div>

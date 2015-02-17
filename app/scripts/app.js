@@ -13,5 +13,5 @@ var mountFilterNode = document.getElementById('filter-container');
 
 React.render(<PayTable payYears={data} />, mountTableNode);
 React.render(<TodoApp />, mountTodoNode);
-React.render(<FilterBox initialEarliest={1977} initialLatest={2010}/>, mountFilterNode);
+React.render(<FilterBox initialEarliest={1997} initialLatest={2014}/>, mountFilterNode);
 

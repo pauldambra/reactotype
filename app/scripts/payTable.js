@@ -40,33 +40,42 @@ var PayTable = React.createClass({
             data: this.props.payYears.sort(sortDescending)
         };
     },
-    sortData: function() {
-        if(this.state.sortDirection==='descending') {
-            this.setState({ 
-                sortDirection: 'ascending',
-                data: this.props.payYears.sort(sortAscending)
-            });
-        } else {
-            this.setState({ 
-                sortDirection: 'descending',
-                data: this.props.payYears.sort(sortDescending)
-            });
+    preparePayData: function(data, options) {
+        if (options.yearBounds) {
+            data = data.filter(function(element) {
+                        return element.year >= options.yearBounds.earliest 
+                            && element.year <= options.yearBounds.latest;
+                    })
         }
+        if (options.sortDirection) {
+            data = data.sort(options.sortDirection==='descending' 
+                                ? sortDescending
+                                : sortAscending);
+        }
+        this.setState({data: data});
     },
-    componentWillMount: function() {
-    postal.subscribe({
-      channel: "filters",
-      topic : "year.bounds.change",
-      callback: function(d, e) {
-        console.log(d);
-        this.filterData(d);
-      }
-    }).context(this);
-  },
-  filterData: function(item) {
-    // var items = this.state.items.concat([item]);
-    // this.setState({ items: items });
-  },
+    sortData: function() {
+        this.setState({sortDirection: this.state.sortDirection === 'descending'
+                                     ? 'ascending'
+                                     : 'descending'}, 
+                      function() {
+                        this.preparePayData(this.props.payYears, this.state);
+                      })
+    },
+    filterData: function(filterBounds) {
+        this.setState({yearBounds: filterBounds}, function() {
+            this.preparePayData(this.props.payYears, this.state);
+        });
+      },
+        componentWillMount: function() {
+        postal.subscribe({
+          channel: "filters",
+          topic : "year.bounds.change",
+          callback: function(d, e) {
+            this.filterData(d);
+          }
+        }).context(this);
+      },
     render: function() {
         return (
             <table className="table table-striped">
