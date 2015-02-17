@@ -13,12 +13,20 @@ var FilterBox = React.createClass({
     },
     handleEarliestChange: function(event) {
     	this.setState({earliest: parseInt(event.target.value, 10)}, function() {
-    		postal.channel('filters').publish('year.bounds.change', this.state);
+    		postal.publish({
+    			channel: 'filters',
+    			topic: 'year.bounds.change', 
+    			data: this.state
+    		});
     	});
     },
     handleLatestChange: function(event) {
     	this.setState({latest: parseInt(event.target.value, 10)}, function() {
-    		postal.channel('filters').publish('year.bounds.change', this.state);
+    		postal.publish({
+    			channel: 'filters',
+    			topic: 'year.bounds.change', 
+    			data: this.state
+    		});
     	});
     },
     render: function() {

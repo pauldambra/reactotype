@@ -56,7 +56,7 @@ var PayTable = React.createClass({
     componentWillMount: function() {
     postal.subscribe({
       channel: "filters",
-      topic : "years.bounds.change",
+      topic : "year.bounds.change",
       callback: function(d, e) {
         console.log(d);
         this.filterData(d);
