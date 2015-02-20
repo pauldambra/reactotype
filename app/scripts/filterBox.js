@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React = window.React = require('react');
-var postal = window.postal = require('postal');
+var React = require('react');
+var postal = require('postal');
 var bus = require('./messageBus');
 
 var YearFilterInput = React.createClass({
