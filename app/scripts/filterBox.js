@@ -3,6 +3,7 @@
 
 var React = window.React = require('react');
 var postal = window.postal = require('postal');
+var bus = require('./messageBus');
 
 var FilterBox = React.createClass({
     getInitialState: function() {
@@ -14,8 +15,8 @@ var FilterBox = React.createClass({
     handleEarliestChange: function(event) {
     	this.setState({earliest: parseInt(event.target.value, 10)}, function() {
     		postal.publish({
-    			channel: 'filters',
-    			topic: 'year.bounds.change', 
+	          channel: bus.channels.filters,
+	          topic : bus.topics.filters.yearBoundsChange,
     			data: this.state
     		});
     	});
@@ -23,8 +24,8 @@ var FilterBox = React.createClass({
     handleLatestChange: function(event) {
     	this.setState({latest: parseInt(event.target.value, 10)}, function() {
     		postal.publish({
-    			channel: 'filters',
-    			topic: 'year.bounds.change', 
+          channel: bus.channels.filters,
+          topic : bus.topics.filters.yearBoundsChange,
     			data: this.state
     		});
     	});

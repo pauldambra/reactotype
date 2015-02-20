@@ -3,6 +3,7 @@
 
 var React = window.React = require('react');
 var postal = window.postal = require('postal');
+var bus = require('./messageBus');
 
 var PayRow = React.createClass({
     render: function() {
@@ -69,8 +70,8 @@ var PayTable = React.createClass({
       },
         componentWillMount: function() {
         postal.subscribe({
-          channel: "filters",
-          topic : "year.bounds.change",
+          channel: bus.channels.filters,
+          topic : bus.topics.filters.yearBoundsChange,
           callback: function(d, e) {
             this.filterData(d);
           }
