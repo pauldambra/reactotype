@@ -2,15 +2,14 @@
 
 var gulp = require('gulp');
 var del = require('del');
-
-// Load plugins
 var $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
 var watchify = require('watchify');
-var source = require('vinyl-source-stream'),
-    sourceFile = './app/scripts/app.js',
-    destFolder = './dist/scripts',
-    destFileName = 'app.js';
+var source = require('vinyl-source-stream');
+var sourceFile = './app/scripts/app.js';
+var destFolder = './dist/scripts';
+var destFileName = 'app.js';
+var mocha = require('gulp-mocha');
 
 // Styles
 gulp.task('styles', function () {
@@ -46,6 +45,16 @@ gulp.task('scripts', function () {
     bundler.on('update', rebundle);
 
     return rebundle();
+});
+
+gulp.task('test', ['scripts'], function() {
+  return gulp.src(['test/*Spec.js'], { read: false })
+    .pipe(mocha({
+      reporter: 'spec',
+      globals: {
+        should: require('should')
+      }
+    }));
 });
 
 // HTML
