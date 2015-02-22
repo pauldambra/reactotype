@@ -1,6 +1,6 @@
 //taken from 
 //http://www.hammerlab.org/2015/02/14/testing-react-web-apps-with-mocha/
-//is used to transpile jsx for tests
+//is used to transform jsx into js for tests
 'use strict';
 
 var fs = require('fs'),
