@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React = window.React = require('react/addons');
-var postal = window.postal = require('postal');
+var React = require('react/addons');
+var postal = require('postal');
 var bus = require('./messageBus');
 
 var PayRow = React.createClass({
