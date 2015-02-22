@@ -44,6 +44,7 @@ describe('the filter box', function() {
 				return element.props != undefined 
 						&& element.props.name === 'Earliest';
 			});
+			
 			matchedInputs.length.should.be.exactly(1);
 			earliestInput = matchedInputs[0];
 		});
