@@ -25,7 +25,7 @@ gulp.task('styles', function () {
 });
 
 // Scripts
-gulp.task('scripts', function () {
+gulp.task('scripts', ['test'], function () {
 	var bundler = watchify(browserify({
 		entries: [sourceFile],
 		insertGlobals: true,
