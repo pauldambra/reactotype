@@ -8,7 +8,7 @@ var data;
 
 describe('the pay table', function() {
 	beforeEach(function() {
-		//urgh, React tests when it loads if Dom is available
+		//React tests when it loads if Dom is available
 		//if you try to set state it gets unhappy so
 		//force the result of that test to true
 		require('react/lib/ExecutionEnvironment').canUseDOM = true;
